@@ -75,7 +75,10 @@ export default async function ActivityPage({ params }: { params: Promise<{ slug:
             {activity.emoji} {activity.title}
           </h1>
           <p style={{ color: "#6b7fa3", lineHeight: 1.7, maxWidth: "560px" }}>
-            {activity.kind === "quiz" ? activity.intro : activity.description}
+            {/* Every room now has a written intro (labs included), so we show
+                it everywhere — the lab intros carry the "simulated & safe"
+                framing pupils should read before they start. */}
+            {activity.intro}
           </p>
         </div>
         <div className="mb-8" style={{ height: "1px", background: "#1a2744" }} />

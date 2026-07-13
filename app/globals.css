@@ -1,27 +1,35 @@
 /* app/globals.css */
 
+/* Import a distinctive font pairing from Google Fonts.
+   CSS requires every @import to appear before any normal rules, so the font
+   import goes FIRST — above the Tailwind import — to keep the build warning-free. */
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap');
+
 /* Tailwind v4 syntax — one import replaces the old @tailwind directives */
 @import "tailwindcss";
 
-/* Import a distinctive font pairing from Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap');
-
-/* ─── Custom design tokens ─────────────────────────────────────────── */
+/* ─── Custom design tokens (DARK THEME) ────────────────────────────────
+   These now match the dark "cyber terminal" look used inside the rooms, so
+   the whole site — homepage included — is one cohesive dark experience. */
 :root {
   --font-display: 'DM Serif Display', Georgia, serif;
   --font-body:    'DM Sans', system-ui, sans-serif;
+  --font-mono:    ui-monospace, 'SFMono-Regular', 'Menlo', 'Consolas', monospace;
 
-  /* A deep navy + electric teal palette — serious but not boring */
-  --color-bg:        #f0f4f8;   /* cool light grey */
-  --color-surface:   #ffffff;
-  --color-border:    #dde3ea;
-  --color-text:      #0f1923;   /* near-black */
-  --color-muted:     #64748b;   /* slate-500 */
-  --color-accent:    #0ea5e9;   /* sky-500 */
-  --color-accent-dk: #0369a1;   /* sky-700 */
-  --color-navy:      #0f1f38;   /* deep navy for hero */
-  --color-correct:   #16a34a;
-  --color-wrong:     #dc2626;
+  /* Deep navy backgrounds + electric teal accent (same palette as the rooms) */
+  --bg:              #060b14;   /* deepest page background */
+  --color-bg:        #060b14;
+  --color-surface:   #0d1421;   /* card / panel background */
+  --color-surface-2: #111927;   /* slightly lighter panel */
+  --color-border:    #1a2744;   /* subtle borders */
+  --color-text:      #e2e8f0;   /* bright near-white text */
+  --color-muted:     #6b7fa3;   /* slate — secondary text */
+  --color-dim:       #3d4f6b;   /* dim — labels */
+  --color-accent:    #00d4aa;   /* electric teal */
+  --color-accent-dk: #0a9c80;
+  --color-blue:      #8ab4f8;
+  --color-correct:   #22c55e;
+  --color-wrong:     #ef4444;
 }
 
 /* ─── Base styles ───────────────────────────────────────────────────── */
@@ -43,16 +51,16 @@ h1, h2, h3, h4 {
   line-height: 1.2;
 }
 
-/* ─── Subtle grid texture on body background ────────────────────────── */
+/* ─── Subtle grid texture on the dark body background ────────────────── */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
   background-image:
-    linear-gradient(var(--color-border) 1px, transparent 1px),
-    linear-gradient(90deg, var(--color-border) 1px, transparent 1px);
-  background-size: 40px 40px;
-  opacity: 0.35;
+    linear-gradient(rgba(26,39,68,0.6) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26,39,68,0.6) 1px, transparent 1px);
+  background-size: 44px 44px;
+  opacity: 0.4;
   pointer-events: none;
   z-index: 0;
 }

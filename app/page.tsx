@@ -2,6 +2,9 @@
 // The homepage. It reads the activities registry and generates cards
 // automatically — add a new activity to the registry and it appears here
 // with zero extra work.
+//
+// DARK THEME: this landing page now matches the dark "cyber terminal" look of
+// the rooms, so the whole site is one cohesive dark experience.
 
 import { activities } from "@/lib/activities";
 import ActivityCard from "@/components/ActivityCard";
@@ -18,8 +21,8 @@ export default function HomePage() {
         <div
           className="inline-flex items-center justify-center w-16 h-16 rounded-2xl text-3xl mb-6"
           style={{
-            backgroundColor: "#0f1923",  /* deep navy */
-            boxShadow: "0 0 0 1px rgba(14,165,233,0.3), 0 8px 32px rgba(14,165,233,0.15)",
+            backgroundColor: "#0d1421",  /* dark panel */
+            boxShadow: "0 0 0 1px rgba(0,212,170,0.35), 0 8px 32px rgba(0,212,170,0.18)",
           }}
         >
           🛡️
@@ -46,16 +49,16 @@ export default function HomePage() {
           and think like a defender — all with safe, made-up examples.
         </p>
 
-        {/* Pill badges — quick value props */}
+        {/* Pill badges — quick value props (dark, teal-tinted) */}
         <div className="mt-6 flex flex-wrap gap-2 justify-center">
           {["No login", "No tracking", "100% fictional", "Defensive only"].map((tag) => (
             <span
               key={tag}
               className="inline-block rounded-full px-3 py-1 text-xs font-medium border"
               style={{
-                backgroundColor: "#f0f9ff",  /* sky-50 */
-                borderColor: "#bae6fd",       /* sky-200 */
-                color: "#0369a1",             /* sky-700 */
+                backgroundColor: "rgba(0,212,170,0.08)",
+                borderColor: "rgba(0,212,170,0.30)",
+                color: "#00d4aa",
                 fontFamily: "var(--font-body)",
               }}
             >
