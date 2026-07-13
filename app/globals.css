@@ -1,44 +1,40 @@
 /* app/globals.css */
 
-/* Import a distinctive font pairing from Google Fonts.
-   CSS requires every @import to appear before any normal rules, so the font
-   import goes FIRST — above the Tailwind import — to keep the build warning-free. */
+/* Font import must precede all normal rules (CSS spec), so it goes first. */
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap');
-
-/* Tailwind v4 syntax — one import replaces the old @tailwind directives */
 @import "tailwindcss";
 
-/* ─── Custom design tokens (DARK THEME) ────────────────────────────────
-   These now match the dark "cyber terminal" look used inside the rooms, so
-   the whole site — homepage included — is one cohesive dark experience. */
+/* ─── Design tokens (dark "cyber terminal" theme) ───────────────────── */
 :root {
   --font-display: 'DM Serif Display', Georgia, serif;
   --font-body:    'DM Sans', system-ui, sans-serif;
   --font-mono:    ui-monospace, 'SFMono-Regular', 'Menlo', 'Consolas', monospace;
 
-  /* Deep navy backgrounds + electric teal accent (same palette as the rooms) */
-  --bg:              #060b14;   /* deepest page background */
+  --bg:              #060b14;
   --color-bg:        #060b14;
-  --color-surface:   #0d1421;   /* card / panel background */
-  --color-surface-2: #111927;   /* slightly lighter panel */
-  --color-border:    #1a2744;   /* subtle borders */
-  --color-text:      #e2e8f0;   /* bright near-white text */
-  --color-muted:     #6b7fa3;   /* slate — secondary text */
-  --color-dim:       #3d4f6b;   /* dim — labels */
-  --color-accent:    #00d4aa;   /* electric teal */
+  --color-surface:   #0d1421;
+  --color-surface-2: #111927;
+  --color-border:    #1a2744;
+  --color-text:      #e2e8f0;
+  --color-muted:     #6b7fa3;
+  --color-dim:       #3d4f6b;
+  --color-accent:    #00d4aa;
   --color-accent-dk: #0a9c80;
   --color-blue:      #8ab4f8;
   --color-correct:   #22c55e;
   --color-wrong:     #ef4444;
 }
 
-/* ─── Base styles ───────────────────────────────────────────────────── */
-*, *::before, *::after {
-  box-sizing: border-box;
-}
+*, *::before, *::after { box-sizing: border-box; }
 
 body {
+  /* A soft teal glow near the top gives the flat navy some depth,
+     with the deep navy base colour underneath. */
   background-color: var(--color-bg);
+  background-image:
+    radial-gradient(900px 500px at 50% -8%, rgba(0,212,170,0.10), transparent 70%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   color: var(--color-text);
   font-family: var(--font-body);
   font-size: 16px;
@@ -46,36 +42,28 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, h4 {
-  font-family: var(--font-display);
-  line-height: 1.2;
-}
+h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.2; }
 
-/* ─── Subtle grid texture on the dark body background ────────────────── */
+/* Subtle grid texture, sitting behind the content */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
   background-image:
-    linear-gradient(rgba(26,39,68,0.6) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(26,39,68,0.6) 1px, transparent 1px);
+    linear-gradient(rgba(26,39,68,0.55) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26,39,68,0.55) 1px, transparent 1px);
   background-size: 44px 44px;
-  opacity: 0.4;
+  opacity: 0.35;
   pointer-events: none;
   z-index: 0;
 }
 
-/* ─── Fade-in animation for page content ─────────────────────────────── */
+/* ─── Entrance animation ────────────────────────────────────────────── */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(16px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-
-.animate-fade-up {
-  animation: fadeUp 0.45s ease both;
-}
-
-/* Stagger helper classes */
+.animate-fade-up { animation: fadeUp 0.45s ease both; }
 .delay-1 { animation-delay: 0.05s; }
 .delay-2 { animation-delay: 0.12s; }
 .delay-3 { animation-delay: 0.19s; }
